@@ -1,0 +1,87 @@
+# One company per line: <ats>:<board-name> | <Display Name>   (ats = greenhouse | lever | ashby)
+# Find the board name in the company careers URL, e.g.
+#   boards.greenhouse.io/groww  -> greenhouse:groww | Groww
+#   jobs.lever.co/meesho        -> lever:meesho | Meesho
+#   jobs.ashbyhq.com/acme       -> ashby:acme | Acme
+# The "| Display Name" part is optional.
+greenhouse:alphasense | AlphaSense
+greenhouse:apolloio | Apollo.io
+ashby:atlys | Atlys
+greenhouse:avathon | Avathon
+lever:brevo | Brevo
+greenhouse:bugcrowd | Bugcrowd
+greenhouse:capco | Capco
+greenhouse:celigo | Celigo
+greenhouse:chargepoint | ChargePoint
+greenhouse:coinbase | Coinbase
+greenhouse:contentstack | Contentstack
+lever:coupa | Coupa
+lever:cred | CRED
+greenhouse:databricks | Databricks
+greenhouse:deliveroo | Deliveroo
+greenhouse:delphiconsulting | Delphi Consulting
+greenhouse:dept | DEPT
+greenhouse:devrev | DevRev
+greenhouse:druva | Druva
+ashby:elevenlabs | ElevenLabs
+lever:entrata | Entrata
+lever:fampay | FamPay
+greenhouse:godaddy | GoDaddy
+greenhouse:groww | Groww
+lever:gushwork | Gushwork
+greenhouse:highradius | HighRadius
+ashby:hinge-health | Hinge Health
+greenhouse:inmobi | InMobi
+greenhouse:innodatainc | Innodata
+ashby:josys | Josys
+greenhouse:jumio | Jumio
+greenhouse:kerv | Kerv
+lever:kobie | Kobie
+greenhouse:konradgroup | Konrad Group
+lever:mactores | Mactores
+lever:matillion | Matillion
+lever:meesho | Meesho
+lever:mindtickle | Mindtickle
+greenhouse:mongodb | MongoDB
+ashby:netgear | NETGEAR
+lever:netomi | Netomi
+greenhouse:netradyne | Netradyne
+greenhouse:netskope | Netskope
+greenhouse:newrelic | New Relic
+greenhouse:nice | NICE
+greenhouse:okta | Okta
+greenhouse:opentable | OpenTable
+greenhouse:orioninnovation | Orion Innovation
+greenhouse:payoneer | Payoneer
+lever:paytm | Paytm
+lever:pocketfm | Pocket FM
+ashby:pragmatike | Pragmatike
+greenhouse:quillbot | QuillBot
+greenhouse:quinstreet | QuinStreet
+greenhouse:rubrik | Rubrik
+lever:rws | RWS Group
+lever:saviynt | Saviynt
+greenhouse:scopely | Scopely
+greenhouse:showpad | Showpad
+lever:shyftlabs | ShyftLabs
+greenhouse:sigmoid | Sigmoid
+greenhouse:simpplr | Simpplr
+ashby:spotdraft | SpotDraft
+greenhouse:stripe | Stripe
+ashby:tekion | Tekion
+greenhouse:thgingenuity | THG Ingenuity
+greenhouse:threecolts | Threecolts
+greenhouse:toast | Toast
+greenhouse:turing | Turing
+greenhouse:twilio | Twilio
+greenhouse:valtech | Valtech
+greenhouse:veeamsoftware | Veeam Software
+greenhouse:wpp | WPP
+greenhouse:wppproduction | WPP Production
+greenhouse:yipitdata | YipitData
+greenhouse:zetaglobal | Zeta Global
+lever:zeta | Zeta Global
+greenhouse:zinier | Zinier
+greenhouse:zinnia | Zinnia
+greenhouse:zscaler | Zscaler
+ashby:zuru | ZURU Tech
