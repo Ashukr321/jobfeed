@@ -156,3 +156,4 @@ __pycache__/
 # jobfeed personal output
 daily_jobs/
 seen.json
+jobfeed_*/

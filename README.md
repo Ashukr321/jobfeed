@@ -3,47 +3,72 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/python-3.9%2B-3776AB?logo=python&logoColor=white" alt="Python 3.9+">
-  <img src="https://img.shields.io/badge/dependencies-1-34d399" alt="1 dependency">
+  <img src="https://img.shields.io/npm/v/jobfeed?color=CB3837&logo=npm" alt="npm">
+  <img src="https://img.shields.io/badge/node-18%2B-339933?logo=node.js&logoColor=white" alt="Node 18+">
   <img src="https://img.shields.io/badge/no%20login-no%20scraping-818cf8" alt="No login, no scraping">
 </p>
 
 # jobfeed
 
-Run one command and get an Excel file of **SDE-1 / Software Engineer / Frontend jobs posted in the last 7 days**
-in tier-1 Indian cities, each with a direct **Apply** link.
+Run one command and get Excel files of fresh jobs, each with a direct **Apply** link:
 
-**Cities covered:** Bengaluru, Hyderabad, Pune, Mumbai, Delhi NCR, Chennai, Kolkata, Ahmedabad and remote roles in India.
+- **Daily jobs:** SDE-1 / Software Engineer / Frontend jobs **posted in the last 7 days** in tier-1 Indian cities
+  (Bengaluru, Hyderabad, Pune, Mumbai, Delhi NCR, Chennai, Kolkata, Ahmedabad, remote India),
+  from the public job boards companies publish themselves (Greenhouse, Lever, Ashby).
+- **Companies hiring remotely:** companies from arc.dev plus remote dev jobs from Remotive, RemoteOK, Jobicy,
+  Himalayas and Arbeitnow, one Excel file per platform.
 
-Jobs come from the public job boards that companies publish themselves (Greenhouse, Lever, Ashby).
-There's no LinkedIn login and no scraping, so your accounts are never at risk.
-
-## Features
-- **Fresh jobs only:** anything posted more than 7 days ago is dropped.
-- **No repeats:** each run shows only jobs you haven't seen before.
-- **Entry-level filter:** Senior, Lead, Staff, SDE-2/3 and intern roles are removed automatically.
-- **Excel output:** one tidy sheet with company, title, city, posting date and a clickable Apply link.
-- **Fast:** 80+ companies are checked in parallel in a few seconds.
-
-## Setup (one time)
-1. Install Python 3.9 or newer from [python.org](https://www.python.org/downloads/).
-2. In this folder, run:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## Install
+Needs [Node.js](https://nodejs.org) 18 or newer.
+```bash
+npm install -g jobfeed
+```
+Or run it without installing: `npx jobfeed`
 
 ## Usage
 ```bash
-python jobfeed.py
+jobfeed
 ```
-This writes `daily_jobs/jobs_<date>_1.xlsx`, containing jobs from the last 7 days that are new since your last run.
+1. Pick what to fetch: `1` daily jobs, `2` companies hiring remotely, `3` all. Press **Enter** for all.
+2. Type or paste the folder to save into. Press **Enter** for the current folder.
 
-To see every matching job from the last 7 days, including ones you've already seen:
+All Excel files are written to a new folder named `jobfeed_<today's date>` inside that location:
+```
+jobfeed_2026-10-27/
+  india_jobs_2026-10-27.xlsx
+  remote_companies_2026-10-27.xlsx
+  remotive_jobs_2026-10-27.xlsx
+  remoteok_jobs_2026-10-27.xlsx
+  jobicy_jobs_2026-10-27.xlsx
+  himalayas_jobs_2026-10-27.xlsx
+  arbeitnow_jobs_2026-10-27.xlsx
+```
+The companies crawl visits every arc.dev company profile, so option 2 takes a few minutes; option 1 takes seconds.
+
+## Features
+- **Fresh jobs only:** anything posted more than 7 days ago is dropped.
+- **Entry-level filter:** Senior, Lead, Staff, SDE-2/3 and intern roles are removed automatically.
+- **Excel output:** tidy sheets with company, title, location, posting date and a clickable Apply link.
+- **Fast:** 80+ company boards are checked in parallel.
+
+## Development
 ```bash
-python jobfeed.py --all
+git clone https://github.com/Ashukr321/jobfeed && cd jobfeed
+npm install
+npm start      # run the CLI from source
+npm test       # filter checks
 ```
 
-## Add more companies
+### Release a new version
+```bash
+npm test
+npm version patch     # bumps package.json version and makes a git tag
+git push --follow-tags
+npm publish
+```
+The first time, log in with `npm login`. Check what will be published with `npm pack --dry-run`.
+
+### Add more companies
 Each line of `companies.txt` is one company. Take the board name from the company's careers page URL:
 
 | Careers URL | Line to add |
@@ -52,27 +77,18 @@ Each line of `companies.txt` is one company. Take the board name from the compan
 | `jobs.lever.co/meesho` | `lever:meesho \| Meesho` |
 | `jobs.ashbyhq.com/acme` | `ashby:acme \| Acme` |
 
-The `| Name` part is optional; it's the company name shown in Excel. More companies means more jobs.
+The `| Name` part is optional; it's the company name shown in Excel.
 
-## Customize
-These settings are at the top of `jobfeed.py`:
-- `ROLE`: job titles to include.
-- `TOO_SENIOR`: job titles to exclude.
-- `CITIES`: cities to include.
-- `MAX_AGE_DAYS`: how many days back to look (default 7).
-
-After changing any of them, run `python test_jobfeed.py` to check the filters still work.
-
-## Run it automatically every morning
-- **Windows:** open Task Scheduler and choose Create Basic Task → Daily → Start a program. Set the program to `python`, the argument to `jobfeed.py`, and "Start in" to this folder.
-- **Mac/Linux:** run `crontab -e` and add `0 9 * * * cd /path/to/jobfeed && python3 jobfeed.py`
+### Customize
+Filters are at the top of `lib/daily.js`: `ROLE` (titles to include), `TOO_SENIOR` (titles to exclude),
+`CITIES` and `MAX_AGE_DAYS` (default 7). Run `npm test` after changing them.
 
 ## Project layout
 ```
-jobfeed.py        the script
-companies.txt     companies to check
-test_jobfeed.py   filter checks
-daily_jobs/       generated Excel files (git-ignored)
-seen.json         jobs you've already seen (git-ignored)
+bin/jobfeed.js    the CLI
+lib/daily.js      daily India jobs (Greenhouse, Lever, Ashby)
+lib/remote.js     companies hiring remotely + remote job APIs
+companies.txt     company boards to check
+test.js           filter checks
 assets/           README banner
 ```

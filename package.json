@@ -1,0 +1,37 @@
+{
+  "name": "jobfeed",
+  "version": "1.0.0",
+  "description": "One command to get fresh SDE-1 / Frontend jobs in Indian cities and companies hiring remotely, as Excel files.",
+  "bin": {
+    "jobfeed": "bin/jobfeed.js"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "companies.txt"
+  ],
+  "scripts": {
+    "start": "node bin/jobfeed.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "jobs",
+    "job-search",
+    "sde",
+    "frontend",
+    "india",
+    "remote",
+    "excel",
+    "cli"
+  ],
+  "author": "Ashukr321",
+  "repository": "github:Ashukr321/jobfeed",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "exceljs": "^4.4.0"
+  }
+}
