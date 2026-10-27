@@ -19,11 +19,16 @@ Run one command and get Excel files of fresh jobs, each with a direct **Apply** 
   Himalayas and Arbeitnow, one Excel file per platform.
 
 ## Install
-Needs [Node.js](https://nodejs.org) 18 or newer.
-```bash
-npm install -g jobfeed
-```
-Or run it without installing: `npx jobfeed`
+Needs [Node.js](https://nodejs.org) 18 or newer. Pick one:
+
+| How | Install | Run |
+|---|---|---|
+| **Global (recommended)** | `npm install -g jobfeed` | `jobfeed` from any folder |
+| No install | – | `npx jobfeed` |
+| Local, inside a project | `npm install jobfeed` | `npx jobfeed` from that project folder |
+
+A local install (`npm install jobfeed` without `-g`) does **not** add a `jobfeed` command to your terminal.
+npm puts it in `node_modules/.bin`, so run it with `npx jobfeed`. To type just `jobfeed`, use `-g`.
 
 ## Usage
 ```bash
@@ -51,12 +56,34 @@ The companies crawl visits every arc.dev company profile, so option 2 takes a fe
 - **Excel output:** tidy sheets with company, title, location, posting date and a clickable Apply link.
 - **Fast:** 80+ company boards are checked in parallel.
 
+## Troubleshooting
+**`jobfeed` is not recognized / command not found after `npm install jobfeed`**
+That was a local install. Run `npx jobfeed`, or install globally with `npm install -g jobfeed`.
+
+**`npm install jobfeed` fails with `404 Not Found` for some other package**
+If the current folder has no `package.json`, npm installs into the nearest parent folder that has one
+(often your home folder) and tries to install all of *its* dependencies too. If one of those no longer
+exists on npm, the whole install fails. Check where npm is installing with `npm prefix`. Fix it by either:
+- creating a project in the current folder first: `npm init -y`, then `npm install jobfeed`, or
+- installing globally: `npm install -g jobfeed`.
+
+**`jobfeed` is not recognized after `npm install -g jobfeed`**
+npm's global folder isn't on your PATH. Run `npm prefix -g` and add that folder (Windows) or its `bin`
+subfolder (Mac/Linux) to PATH, then open a new terminal.
+
+**A company shows `skipped ... timeout`**
+That company's job board was slow to answer. The other companies are still saved; run again later.
+
+## Contributing
+Contributions are welcome: new company boards, new job sources, filter fixes. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Development
 ```bash
 git clone https://github.com/Ashukr321/jobfeed && cd jobfeed
 npm install
 npm start      # run the CLI from source
 npm test       # filter checks
+npm link       # optional: makes `jobfeed` run your local copy from anywhere
 ```
 
 ### Release a new version
