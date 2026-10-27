@@ -26,7 +26,15 @@ Undo it with `npm unlink -g jobfeed`.
 
 ### Add a company
 Add one line to `companies.txt`: `<ats>:<board> | <Display Name>` (ats = `greenhouse`, `lever` or `ashby`).
-The board name is in the company's careers URL, e.g. `boards.greenhouse.io/groww` → `greenhouse:groww | Groww`.
+The board name is in the company's careers URL:
+
+| Careers URL | Line to add |
+|---|---|
+| `boards.greenhouse.io/groww` | `greenhouse:groww \| Groww` |
+| `jobs.lever.co/meesho` | `lever:meesho \| Meesho` |
+| `jobs.ashbyhq.com/acme` | `ashby:acme \| Acme` |
+
+The `| Name` part is optional; it's the company name shown in Excel.
 Before opening the PR, check that the board answers by running `npm start` and choosing `1`;
 it must not show up as `skipped`.
 
@@ -51,7 +59,7 @@ Add an assert to `test.js` for the case you're fixing, and make sure `npm test` 
 2. Make your change, run `npm test`, and run the CLI once for the part you touched.
 3. Write a short commit message that says what changed, e.g. `Add Razorpay to companies.txt`.
 4. Open a PR describing what you changed and how you tested it.
-   CI runs `npm test` on Node 18, 20 and 22; the PR needs a green check before it is merged.
+   CI runs `npm test` on Node 22; the PR needs a green check before it is merged.
 
 ## Reporting a bug
 Open an issue with: the command you ran, the option you picked, your Node version (`node -v`),
@@ -64,3 +72,4 @@ npm version patch        # or minor / major; bumps package.json and creates a gi
 git push --follow-tags
 npm publish
 ```
+The first time, log in with `npm login`. Check what will be published with `npm pack --dry-run`.
