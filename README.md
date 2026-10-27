@@ -3,6 +3,7 @@
 </p>
 
 <p align="center">
+  <img src="https://github.com/Ashukr321/jobfeed/actions/workflows/ci.yml/badge.svg" alt="CI">
   <img src="https://img.shields.io/npm/v/jobfeed?color=CB3837&logo=npm" alt="npm">
   <img src="https://img.shields.io/badge/node-18%2B-339933?logo=node.js&logoColor=white" alt="Node 18+">
   <img src="https://img.shields.io/badge/no%20login-no%20scraping-818cf8" alt="No login, no scraping">

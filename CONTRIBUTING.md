@@ -51,6 +51,7 @@ Add an assert to `test.js` for the case you're fixing, and make sure `npm test` 
 2. Make your change, run `npm test`, and run the CLI once for the part you touched.
 3. Write a short commit message that says what changed, e.g. `Add Razorpay to companies.txt`.
 4. Open a PR describing what you changed and how you tested it.
+   CI runs `npm test` on Node 18, 20 and 22; the PR needs a green check before it is merged.
 
 ## Reporting a bug
 Open an issue with: the command you ran, the option you picked, your Node version (`node -v`),
