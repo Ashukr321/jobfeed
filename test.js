@@ -1,5 +1,5 @@
 const assert = require("assert");
-const { wanted, cityOf, recent } = require("./lib/daily");
+const { wanted, cityOf, recent, workdayDate } = require("./lib/daily");
 
 assert(wanted("Software Engineer") && wanted("SDE-1") && wanted("Frontend Developer"));
 assert(!wanted("Senior Software Engineer") && !wanted("SDE 2") && !wanted("Software Engineer II"));
@@ -9,4 +9,12 @@ assert(cityOf("San Francisco, CA") === null);
 const d = new Date("2026-10-24T12:00:00Z");
 assert(recent("2026-10-17", d) && recent("2026-10-24T09:00:00", d));
 assert(!recent("2026-10-16", d) && !recent("", d));
+assert(workdayDate("Posted Today", d) === "2026-10-24" && workdayDate("Posted Yesterday", d) === "2026-10-23");
+assert(workdayDate("Posted 3 Days Ago", d) === "2026-10-21" && workdayDate("Posted 30+ Days Ago", d) === "2026-09-24");
+assert(workdayDate("", d) === "" && workdayDate(undefined, d) === "");
+const { ago } = require("./lib/remote");
+const now = d.getTime();
+assert(ago("3 days", now).getTime() === now - 3 * 864e5 && ago("about 22 hours", now).getTime() === now);
+assert(ago("about 1 month", now).getTime() === now - 30 * 864e5 && ago("less than a minute", now).getTime() === now);
+assert(isNaN(ago("", now)) && isNaN(ago("soon", now)));
 console.log("ok");

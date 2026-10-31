@@ -12,7 +12,8 @@
 
 <p align="center">
   <b>One command. Fresh jobs. Excel files with a direct Apply link.</b><br>
-  SDE-1 / Frontend jobs in Indian cities and companies hiring remotely, posted in the last 7 days.
+  SDE-1 / Frontend jobs in Indian cities, companies hiring remotely, and jobs from YC, Wellfound, Cutshort
+  and remote job boards, all posted in the last 7 days.
 </p>
 
 ---
@@ -23,7 +24,8 @@
 npx jobfeed
 ```
 
-No sign-up, no API keys, no scraping. Jobs come from the public job-board APIs that companies publish themselves.
+No sign-up, no login, no API keys. Jobs come from the public job-board APIs that companies publish themselves
+(Greenhouse, Lever, Ashby, Workday), public job APIs, and the public job pages of YC, Wellfound and Cutshort.
 
 ## Install
 
@@ -46,18 +48,21 @@ jobfeed
 
 What do you want to fetch?
   1. Daily jobs (SDE-1 / Frontend in Indian cities)
-  2. Companies hiring remotely + remote jobs
+  2. Companies hiring remotely + jobs from job platforms (remote boards, YC, Wellfound, Cutshort)
   3. All of the above (default)
 > Choose 1-3 [3]:
 > Save Excel files where? [C:\Users\you\Desktop]: D:\jobs
 
 ▶ Daily jobs
-✔ 24 jobs from 81 companies -> india_jobs_2026-10-27.xlsx (5s)
+✔ 12 jobs from 95 companies -> india_jobs_2026-10-31.xlsx (20s)
 
 ▶ Companies hiring remotely
-✔ 151 companies, 59 SDE/frontend remote jobs -> remote_companies_2026-10-27.xlsx (117s)
+  Wellfound: 184 fetched, 18 in last 7 days, 7 SDE/frontend
+  Cutshort: 200 fetched, 23 in last 7 days, 3 SDE/frontend
+  ...
+✔ 151 companies, 69 SDE/frontend remote jobs -> remote_companies_2026-10-31.xlsx (117s)
 
-Done. Files are in D:\jobs\jobfeed_2026-10-27
+Done. Files are in D:\jobs\jobfeed_2026-10-31
 ```
 
 1. **Pick what to fetch.** Press <kbd>Enter</kbd> for all.
@@ -68,14 +73,17 @@ Done. Files are in D:\jobs\jobfeed_2026-10-27
 Every run creates a dated folder with one Excel file per source:
 
 ```
-jobfeed_2026-10-27/
-├── india_jobs_2026-10-27.xlsx         # option 1
-├── remote_companies_2026-10-27.xlsx   # option 2: companies + matched remote jobs
-├── remotive_jobs_2026-10-27.xlsx      # option 2: one file per remote job site
-├── remoteok_jobs_2026-10-27.xlsx
-├── jobicy_jobs_2026-10-27.xlsx
-├── himalayas_jobs_2026-10-27.xlsx
-└── arbeitnow_jobs_2026-10-27.xlsx
+jobfeed_2026-10-31/
+├── india_jobs_2026-10-31.xlsx         # option 1
+├── remote_companies_2026-10-31.xlsx   # option 2: companies + SDE/frontend matches from every platform
+├── remotive_jobs_2026-10-31.xlsx      # option 2: one file per job platform, all roles
+├── remoteok_jobs_2026-10-31.xlsx
+├── jobicy_jobs_2026-10-31.xlsx
+├── himalayas_jobs_2026-10-31.xlsx
+├── arbeitnow_jobs_2026-10-31.xlsx
+├── yc_jobs_2026-10-31.xlsx
+├── wellfound_jobs_2026-10-31.xlsx
+└── cutshort_jobs_2026-10-31.xlsx
 ```
 
 | File | Columns |
@@ -88,15 +96,27 @@ Every sheet has a frozen header, filters and clickable links.
 
 ## What you get
 
-| | Daily jobs | Companies hiring remotely |
+| | 1. Daily jobs | 2. Remote companies + job platforms |
 |---|---|---|
-| **Roles** | SDE-1, Software Engineer, Frontend, React, Web, UI | Remote dev jobs (SDE / Frontend matches in the combined sheet) |
-| **Where** | Bengaluru, Hyderabad, Pune, Mumbai, Delhi NCR, Chennai, Kolkata, Ahmedabad, Remote India | Remote, open to India or worldwide |
-| **Sources** | 80+ company boards on Greenhouse, Lever and Ashby | arc.dev, Remotive, RemoteOK, Jobicy, Himalayas, Arbeitnow |
+| **Roles** | SDE-1, Software Engineer, Frontend, React, Web, UI | All dev jobs per platform file; SDE / Frontend matches in the combined sheet |
+| **Where** | Bengaluru, Hyderabad, Pune, Mumbai, Delhi NCR, Chennai, Kolkata, Ahmedabad, Remote India | Remote boards: open to India or worldwide. YC: all, India, remote. Wellfound, Cutshort: India |
+| **Sources** | 90+ company boards on Greenhouse, Lever, Ashby and Workday | arc.dev, Remotive, RemoteOK, Jobicy, Himalayas, Arbeitnow, YC (Work at a Startup), Wellfound, Cutshort |
 | **Freshness** | Posted in the last 7 days | Posted in the last 7 days |
-| **Time** | ~5 seconds | ~2 minutes |
+| **Time** | ~20 seconds | ~2 minutes |
 
 Senior, Lead, Staff, Principal, Manager, SDE-2/3 and intern roles are filtered out automatically.
+
+### Sources
+
+| Platform | Option | What's fetched |
+|---|---|---|
+| Greenhouse, Lever, Ashby | 1 | Startups and product companies listed in [`companies.txt`](https://github.com/Ashukr321/jobfeed/blob/main/companies.txt) |
+| Workday | 1 | Big companies hiring in India: NVIDIA, PayPal, Citi, Salesforce, Intel, Adobe, Mastercard, HP and more |
+| YC (Work at a Startup) | 2 | Software engineer jobs at Y Combinator startups (all, India, remote) |
+| Wellfound | 2 | Software and frontend engineer jobs in India, with salary and equity |
+| Cutshort | 2 | React, JavaScript, frontend and Node.js jobs in India, with salary and experience range |
+| Remotive, RemoteOK, Jobicy, Himalayas, Arbeitnow | 2 | Remote dev jobs |
+| arc.dev | 2 | Companies hiring remotely, with website and LinkedIn |
 
 ## FAQ
 
@@ -126,6 +146,21 @@ npm's global folder isn't on your PATH. Run `npm prefix -g`, add that folder (Wi
 <summary><b>A company shows <code>skipped ... timeout</code></b></summary>
 
 That company's job board answered too slowly. All other results are still saved. Run again later.
+</details>
+
+<details>
+<summary><b>YC, Wellfound or Cutshort shows an HTTP error or 0 jobs</b></summary>
+
+These sites have no public API, so jobfeed reads the job data from their public pages. If a site blocks the
+request or changes its page layout, that platform fails with a warning and every other file is still saved.
+Run again later, or [open an issue](https://github.com/Ashukr321/jobfeed/issues) if it keeps failing.
+</details>
+
+<details>
+<summary><b>Why are there only a few Workday jobs?</b></summary>
+
+Big companies post many jobs in India, but most are senior or use titles like "Software Engineer II" or "MTS",
+which the SDE-1 filter skips. Expect a handful a day.
 </details>
 
 <details>

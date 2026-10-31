@@ -1,8 +1,9 @@
-# One company per line: <ats>:<board-name> | <Display Name>   (ats = greenhouse | lever | ashby)
+# One company per line: <ats>:<board-name> | <Display Name>   (ats = greenhouse | lever | ashby | workday)
 # Find the board name in the company careers URL, e.g.
 #   boards.greenhouse.io/groww  -> greenhouse:groww | Groww
 #   jobs.lever.co/meesho        -> lever:meesho | Meesho
 #   jobs.ashbyhq.com/acme       -> ashby:acme | Acme
+#   nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite -> workday:nvidia.wd5/NVIDIAExternalCareerSite | NVIDIA
 # The "| Display Name" part is optional.
 greenhouse:alphasense | AlphaSense
 greenhouse:apolloio | Apollo.io
@@ -85,3 +86,18 @@ greenhouse:zinier | Zinier
 greenhouse:zinnia | Zinnia
 greenhouse:zscaler | Zscaler
 ashby:zuru | ZURU Tech
+# Workday boards: <tenant>.<wdN>/<site> from https://<tenant>.<wdN>.myworkdayjobs.com/<site>
+workday:adobe.wd5/external_experienced | Adobe
+workday:analogdevices.wd1/External | Analog Devices
+workday:cadence.wd1/External_Careers | Cadence
+workday:citi.wd5/2 | Citi
+workday:hp.wd5/ExternalCareerSite | HP
+workday:intel.wd1/External | Intel
+workday:mastercard.wd1/CorporateCareers | Mastercard
+workday:motorolasolutions.wd5/Careers | Motorola Solutions
+workday:nvidia.wd5/NVIDIAExternalCareerSite | NVIDIA
+workday:paypal.wd1/jobs | PayPal
+workday:salesforce.wd12/External_Career_Site | Salesforce
+workday:target.wd5/targetcareers | Target
+workday:wf.wd1/WellsFargoJobs | Wells Fargo
+workday:workday.wd5/Workday | Workday

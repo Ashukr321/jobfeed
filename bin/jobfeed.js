@@ -9,7 +9,7 @@ const { remoteCompanies } = require("../lib/remote");
 
 const CHOICES = {
   1: { label: "Daily jobs (SDE-1 / Frontend in Indian cities)", daily: true },
-  2: { label: "Companies hiring remotely + remote jobs", remote: true },
+  2: { label: "Companies hiring remotely + jobs from job platforms (remote boards, YC, Wellfound, Cutshort)", remote: true },
   3: { label: "All of the above", daily: true, remote: true },
 };
 
