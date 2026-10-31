@@ -1,6 +1,6 @@
 {
   "name": "jobfeed",
-  "version": "2.0.0",
+  "version": "1.0.3",
   "description": "One command to get fresh SDE-1 / Frontend jobs in Indian cities, companies hiring remotely, and jobs from YC, Wellfound and Cutshort, as Excel files.",
   "bin": {
     "jobfeed": "bin/jobfeed.js"
